@@ -5,7 +5,7 @@
  * Description: Add dynamic notices above the cart and checkout to help increase your sales!
  * Author: Hypericum Impex
  * Author URI: https://github.com/hypericumimpex/
- * Version: 1.9.0
+ * Version: 1.9.1
  * Text Domain: woocommerce-cart-notices
  * Domain Path: /i18n/languages/
  *
@@ -22,7 +22,7 @@
  *
  * Woo: 18706:cf25b8df1ffe2fa1880b076aa137f8d7
  * WC requires at least: 2.6.14
- * WC tested up to: 3.5.4
+ * WC tested up to: 3.6.0
  */
 
 defined( 'ABSPATH' ) or exit;
@@ -49,7 +49,7 @@ class WC_Cart_Notices_Loader {
 
 
 	/** minimum PHP version required by this plugin */
-	const MINIMUM_PHP_VERSION = '5.3.0';
+	const MINIMUM_PHP_VERSION = '5.4.0';
 
 	/** minimum WordPress version required by this plugin */
 	const MINIMUM_WP_VERSION = '4.4';
@@ -58,7 +58,7 @@ class WC_Cart_Notices_Loader {
 	const MINIMUM_WC_VERSION = '2.6';
 
 	/** SkyVerge plugin framework version used by this plugin */
-	const FRAMEWORK_VERSION = '5.3.0';
+	const FRAMEWORK_VERSION = '5.4.0';
 
 	/** the plugin name, for displaying notices */
 	const PLUGIN_NAME = 'WooCommerce Cart Notices';

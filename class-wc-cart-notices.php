@@ -23,7 +23,7 @@
 
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_3_0 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_4_0 as Framework;
 
 /**
  * WooCommerce Cart Notices main class.
@@ -33,7 +33,7 @@ use SkyVerge\WooCommerce\PluginFramework\v5_3_0 as Framework;
 class WC_Cart_Notices extends Framework\SV_WC_Plugin {
 
 
-	const VERSION = '1.9.0';
+	const VERSION = '1.9.1';
 
 	/** @var WC_Cart_Notices single instance of this plugin */
 	protected static $instance;
@@ -336,7 +336,7 @@ class WC_Cart_Notices extends Framework\SV_WC_Plugin {
 			// hold the lowest free shipping minimum for this package;
 			$free_minimums[ $i ] = '';
 
-			$shipping = WC()->shipping->load_shipping_methods( $package );
+			$shipping = WC()->shipping()->load_shipping_methods( $package );
 
 			// loop all package methods to get the min amount for any free shipping rate
 			// there could be more than one free shipping rate available
@@ -813,8 +813,8 @@ class WC_Cart_Notices extends Framework\SV_WC_Plugin {
 		}
 
 		// load the shipping methods if not already available
-		if ( 0 === count( $shipping_methods = WC()->shipping->get_shipping_methods() ) ) {
-			$shipping_methods = WC()->shipping->load_shipping_methods();
+		if ( 0 === count( $shipping_methods = WC()->shipping()->get_shipping_methods() ) ) {
+			$shipping_methods = WC()->shipping()->load_shipping_methods();
 		}
 
 		// minimum order amount set for free shipping method?

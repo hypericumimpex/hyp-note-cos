@@ -25,7 +25,7 @@ namespace SkyVerge\WooCommerce\Cart_Notices;
 
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_3_0 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_4_0 as Framework;
 
 /**
  * Plugin lifecycle handler.
@@ -35,6 +35,23 @@ use SkyVerge\WooCommerce\PluginFramework\v5_3_0 as Framework;
  * @method \WC_Cart_Notices get_plugin()
  */
 class Lifecycle extends Framework\Plugin\Lifecycle {
+
+
+	/**
+	 * Lifecycle constructor.
+	 *
+	 * @since 1.9.1
+	 *
+	 * @param \WC_Cart_Notices $plugin
+	 */
+	public function __construct( $plugin ) {
+
+		parent::__construct( $plugin );
+
+		$this->upgrade_versions = [
+			'1.2.3',
+		];
+	}
 
 
 	/**
@@ -82,39 +99,11 @@ class Lifecycle extends Framework\Plugin\Lifecycle {
 
 
 	/**
-	 * Handles upgrades.
-	 *
-	 * @since 1.9.0
-	 *
-	 * @param string $installed_version the currently installed version
-	 */
-	protected function upgrade( $installed_version ) {
-
-		if ( ! empty( $installed_version ) ) {
-
-			$upgrades = array(
-				'1.2.3' => 'update_to_1_2_3',
-			);
-
-			foreach ( $upgrades as $update_to_version => $update_script ) {
-
-				if ( version_compare( $installed_version, $update_to_version, '<' ) ) {
-
-					$this->$update_script();
-
-					$this->get_plugin()->log( sprintf( 'Updated to version %s', $update_to_version ) );
-				}
-			}
-		}
-	}
-
-
-	/**
 	 * Updates to version 1.2.3
 	 *
-	 * @since 1.9.0
+	 * @since 1.9.1
 	 */
-	private function update_to_1_2_3() {
+	protected function upgrade_to_1_2_3() {
 
 		// old db version option name was removed in 1.2.3
 		delete_option( 'wc_cart_notices_db_version' );

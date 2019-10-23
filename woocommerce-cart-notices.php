@@ -5,7 +5,7 @@
  * Description: Add dynamic notices above the cart and checkout to help increase your sales!
  * Author: Hypericum Impex
  * Author URI: https://github.com/hypericumimpex/
- * Version: 1.9.1
+ * Version: 1.11.0
  * Text Domain: woocommerce-cart-notices
  * Domain Path: /i18n/languages/
  *
@@ -14,15 +14,15 @@
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @package   HYP-WC-Cart-Notices
- * @author    Hypericum_Impex
+ * @package   WC-Cart-Notices
+ * @author    SkyVerge
  * @category  Plugin
- * @copyright Copyright (c) 2012-2019, Hypericum Impex, Inc.
+ * @copyright Copyright (c) 2012-2019, SkyVerge, Inc.
  * @license   http://www.gnu.org/licenses/gpl-3.0.html GNU General Public License v3.0
  *
  * Woo: 18706:cf25b8df1ffe2fa1880b076aa137f8d7
- * WC requires at least: 2.6.14
- * WC tested up to: 3.6.0
+ * WC requires at least: 3.0.9
+ * WC tested up to: 3.8.0
  */
 
 defined( 'ABSPATH' ) or exit;
@@ -49,16 +49,16 @@ class WC_Cart_Notices_Loader {
 
 
 	/** minimum PHP version required by this plugin */
-	const MINIMUM_PHP_VERSION = '5.4.0';
+	const MINIMUM_PHP_VERSION = '5.6.0';
 
 	/** minimum WordPress version required by this plugin */
 	const MINIMUM_WP_VERSION = '4.4';
 
 	/** minimum WooCommerce version required by this plugin */
-	const MINIMUM_WC_VERSION = '2.6';
+	const MINIMUM_WC_VERSION = '3.0.9';
 
 	/** SkyVerge plugin framework version used by this plugin */
-	const FRAMEWORK_VERSION = '5.4.0';
+	const FRAMEWORK_VERSION = '5.5.0';
 
 	/** the plugin name, for displaying notices */
 	const PLUGIN_NAME = 'WooCommerce Cart Notices';

@@ -2,10 +2,10 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Cart Notices 1.9.1\n"
+"Project-Id-Version: WooCommerce Cart Notices 1.11.0\n"
 "Report-Msgid-Bugs-To: "
 "https://woocommerce.com/my-account/marketplace-ticket-form/\n"
-"POT-Creation-Date: 2019-04-04 06:24:00+00:00\n"
+"POT-Creation-Date: 2019-10-21 19:40:23+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -53,22 +53,22 @@ msgstr ""
 msgid "Deadline hour must be in 24-hour format, between 1 to 24"
 msgstr ""
 
-#: includes/admin/class-wc-cart-notices-admin.php:346
-#: includes/admin/class-wc-cart-notices-admin.php:490
+#: includes/admin/class-wc-cart-notices-admin.php:338
+#: includes/admin/class-wc-cart-notices-admin.php:482
 #: includes/admin/views/admin-options.php:65
 #: includes/admin/views/admin-options.php:82
 msgid "Cart Notices"
 msgstr ""
 
-#: includes/admin/class-wc-cart-notices-admin.php:410
+#: includes/admin/class-wc-cart-notices-admin.php:402
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
-#: includes/admin/class-wc-cart-notices-admin.php:493
+#: includes/admin/class-wc-cart-notices-admin.php:485
 msgid "Delete data"
 msgstr ""
 
-#: includes/admin/class-wc-cart-notices-admin.php:494
+#: includes/admin/class-wc-cart-notices-admin.php:486
 msgid "Delete all Cart Notices data on uninstall"
 msgstr ""
 
@@ -224,7 +224,7 @@ msgid "Create a New Cart Notice"
 msgstr ""
 
 #: includes/admin/views/admin-options.php:277
-#: includes/admin/views/admin-options.php:802
+#: includes/admin/views/admin-options.php:710
 msgid "Update Cart Notice"
 msgstr ""
 
@@ -383,132 +383,128 @@ msgstr ""
 msgid "\"Show Notice\" Products"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:526
-#: includes/admin/views/admin-options.php:544
-#: includes/admin/views/admin-options.php:606
-#: includes/admin/views/admin-options.php:624
+#: includes/admin/views/admin-options.php:524
+#: includes/admin/views/admin-options.php:582
 msgid "Search for a product&hellip;"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:557
+#: includes/admin/views/admin-options.php:535
 msgid "Show the notice if any selected product is in the cart."
 msgstr ""
 
-#: includes/admin/views/admin-options.php:565
+#: includes/admin/views/admin-options.php:543
 msgid "Minimum Quantity for Notice"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:571
+#: includes/admin/views/admin-options.php:549
 msgid ""
 "Optional minimum product quantity required to activate the notice.  If set, "
 "the quantity of the products selected above must be greater than or equal "
 "to this amount."
 msgstr ""
 
-#: includes/admin/views/admin-options.php:579
+#: includes/admin/views/admin-options.php:557
 msgid "Maximum Quantity for Notice"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:585
+#: includes/admin/views/admin-options.php:563
 msgid ""
 "Optional maximum product quantity allowed to activate the notice.  If set, "
 "the quantity of the products selected above must be less than or equal to "
 "this amount."
 msgstr ""
 
-#: includes/admin/views/admin-options.php:593
+#: includes/admin/views/admin-options.php:571
 msgid "\"Hide Notice\" Products"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:637
+#: includes/admin/views/admin-options.php:593
 msgid "Hide the notice if any selected product is in the cart."
 msgstr ""
 
-#: includes/admin/views/admin-options.php:645
+#: includes/admin/views/admin-options.php:601
 msgid "Shipping Countries"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:654
+#: includes/admin/views/admin-options.php:610
 msgid "Choose Countries&hellip;"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:661
+#: includes/admin/views/admin-options.php:617
 msgid ""
 "Optional list of countries used to trigger the message when the shipping "
 "country is available and matches one of the countries selected here."
 msgstr ""
 
-#: includes/admin/views/admin-options.php:669
+#: includes/admin/views/admin-options.php:625
 msgid "\"Show\" Categories"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:683
-#: includes/admin/views/admin-options.php:702
-#: includes/admin/views/admin-options.php:738
-#: includes/admin/views/admin-options.php:757
+#: includes/admin/views/admin-options.php:638
+#: includes/admin/views/admin-options.php:669
 msgid "Search for a category&hellip;"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:716
+#: includes/admin/views/admin-options.php:648
 msgid "Show the notice if any selected category is in the cart."
 msgstr ""
 
-#: includes/admin/views/admin-options.php:724
+#: includes/admin/views/admin-options.php:656
 msgid "\"Hide\" Categories"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:771
+#: includes/admin/views/admin-options.php:679
 msgid "Hide the notice if any selected category is in the cart."
 msgstr ""
 
-#: includes/admin/views/admin-options.php:796
+#: includes/admin/views/admin-options.php:704
 msgid "Create Cart Notice"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:833
+#: includes/admin/views/admin-options.php:741
 msgid "Cannot render this example notice without shipping zone."
 msgstr ""
 
-#: includes/admin/views/admin-options.php:851
+#: includes/admin/views/admin-options.php:759
 msgid "Example Notice"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:863
+#: includes/admin/views/admin-options.php:771
 #. translators: %s - Formatted minimum order amount
 msgid ""
 "With the current configuration your cart notice will display when the order "
 "total is less than %s and will resemble:"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:871
+#: includes/admin/views/admin-options.php:779
 #. translators: %s - Formatted amount
 msgid ""
 "With the current configuration your cart notice will display when the order "
 "total is greater than or equal to %s and will resemble:"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:879
+#: includes/admin/views/admin-options.php:787
 #. translators: Placeholders: %1$s Threshold order amount, %2$s Target amount
 msgid ""
 "With the current configuration your cart notice will display when the order "
 "total is between %1$s and %2$s and will resemble:"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:888
+#: includes/admin/views/admin-options.php:796
 msgid "With the current configuration your cart notice will resemble: "
 msgstr ""
 
-#: includes/admin/views/admin-options.php:898
+#: includes/admin/views/admin-options.php:806
 msgid "No notice"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:911
+#: includes/admin/views/admin-options.php:819
 msgid ""
 "Add <strong>{amount_under}</strong> to your cart in order to receive free "
 "shipping!"
 msgstr ""
 
-#: includes/admin/views/admin-options.php:912
+#: includes/admin/views/admin-options.php:820
 msgid "Order within the next <strong>{time}</strong> and your order ships today!"
 msgstr ""
 

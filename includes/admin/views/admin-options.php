@@ -23,7 +23,7 @@
 
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_4_0 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_5_0 as Framework;
 
 /**
  * The Admin UI for the WooCommerce Cart Notices plugin.  This renders the
@@ -515,44 +515,22 @@ wc_cart_notices()->get_admin_instance()->message_handler->show_messages(); ?>
 						</th>
 						<td>
 
-							<?php if ( Framework\SV_WC_Plugin_Compatibility::is_wc_version_gte_3_0() ) : ?>
+							<select
+								name="product_ids[]"
+								class="wc-product-search"
+								style="width: 25em;"
+								multiple="multiple"
+								data-multiple="true"
+								data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce-cart-notices' ); ?>"
+								data-action="woocommerce_json_search_products_and_variations">
+								<?php if ( isset( $notice->data['products'] ) ) : ?>
+									<?php foreach ( $notice->data['products'] as $value => $title ) : ?>
+										<option value="<?php echo esc_attr( $value ); ?>" selected="selected"><?php echo esc_html( $title ); ?></option>
+									<?php endforeach; ?>
+								<?php endif; ?>
 
-								<select
-									name="product_ids[]"
-									class="wc-product-search"
-									style="width: 25em;"
-									multiple="multiple"
-									data-multiple="true"
-									data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce-cart-notices' ); ?>"
-									data-action="woocommerce_json_search_products_and_variations">
-									<?php if ( isset( $notice->data['products'] ) ) : ?>
-										<?php foreach ( $notice->data['products'] as $value => $title ) : ?>
-											<option value="<?php echo esc_attr( $value ); ?>" selected="selected"><?php echo esc_html( $title ); ?></option>
-										<?php endforeach; ?>
-									<?php endif; ?>
+							</select>
 
-								</select>
-
-							<?php else : ?>
-
-								<input
-									type="hidden"
-									name="product_ids"
-									class="wc-product-search"
-									style="width: 25em;"
-									data-multiple="true"
-									data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce-cart-notices' ); ?>"
-									data-action="woocommerce_json_search_products_and_variations"
-									data-selected="<?php $json_ids = array();
-								       if ( isset( $notice->data['products'] ) ) {
-									       foreach ( $notice->data['products'] as $value => $title ) {
-										       $json_ids[ esc_attr( $value ) ] = esc_html( $title );
-									       }
-								       }
-								       echo esc_attr( json_encode( $json_ids ) ); ?>"
-									value="<?php echo implode( ',', array_keys( $json_ids ) ); ?>" />
-
-							<?php endif; ?>
 							<span class="description">
 								<?php esc_html_e( 'Show the notice if any selected product is in the cart.', 'woocommerce-cart-notices' ); ?>
 							</span>
@@ -595,44 +573,22 @@ wc_cart_notices()->get_admin_instance()->message_handler->show_messages(); ?>
 						</th>
 						<td>
 
-							<?php if ( Framework\SV_WC_Plugin_Compatibility::is_wc_version_gte_3_0() ) : ?>
+							<select
+									name="hide_product_ids[]"
+									class="wc-product-search"
+									style="width: 25em;"
+									multiple="multiple"
+									data-multiple="true"
+									data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce-cart-notices' ); ?>"
+									data-action="woocommerce_json_search_products_and_variations">
+								<?php if ( isset( $notice->data['hide_products'] ) ) : ?>
+									<?php foreach ( $notice->data['hide_products'] as $value => $title ) : ?>
+										<option value="<?php echo esc_attr( $value ); ?>" selected="selected"><?php echo esc_html( $title ); ?></option>
+									<?php endforeach; ?>
+								<?php endif; ?>
 
-								<select
-										name="hide_product_ids[]"
-										class="wc-product-search"
-										style="width: 25em;"
-										multiple="multiple"
-										data-multiple="true"
-										data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce-cart-notices' ); ?>"
-										data-action="woocommerce_json_search_products_and_variations">
-									<?php if ( isset( $notice->data['hide_products'] ) ) : ?>
-										<?php foreach ( $notice->data['hide_products'] as $value => $title ) : ?>
-											<option value="<?php echo esc_attr( $value ); ?>" selected="selected"><?php echo esc_html( $title ); ?></option>
-										<?php endforeach; ?>
-									<?php endif; ?>
+							</select>
 
-								</select>
-
-							<?php else : ?>
-
-								<input
-										type="hidden"
-										name="hide_product_ids"
-										class="wc-product-search"
-										style="width: 25em;"
-										data-multiple="true"
-										data-placeholder="<?php esc_attr_e( 'Search for a product&hellip;', 'woocommerce-cart-notices' ); ?>"
-										data-action="woocommerce_json_search_products_and_variations"
-										data-selected="<?php $json_ids = array();
-										if ( isset( $notice->data['hide_products'] ) ) {
-											foreach ( $notice->data['hide_products'] as $value => $title ) {
-												$json_ids[ esc_attr( $value ) ] = esc_html( $title );
-											}
-										}
-										echo esc_attr( json_encode( $json_ids ) ); ?>"
-										value="<?php echo implode( ',', array_keys( $json_ids ) ); ?>" />
-
-							<?php endif; ?>
 							<span class="description">
 								<?php esc_html_e( 'Hide the notice if any selected product is in the cart.', 'woocommerce-cart-notices' ); ?>
 							</span>
@@ -670,46 +626,22 @@ wc_cart_notices()->get_admin_instance()->message_handler->show_messages(); ?>
 							</label>
 						</th>
 						<td>
-							<?php if ( Framework\SV_WC_Plugin_Compatibility::is_wc_version_gte_3_0() ) : ?>
 
-								<select
-									class="sv-wc-enhanced-search"
-									name="category_ids[]"
-									style="min-width: 300px;"
-									multiple="multiple"
-									data-action="wc_cart_notices_json_search_product_categories"
-									data-minimum_input_length="2"
-									data-nonce="<?php echo wp_create_nonce( 'search-product-categories' ); ?>"
-									data-placeholder="<?php esc_attr_e( 'Search for a category&hellip;', 'woocommerce-cart-notices' ) ?>">
-									<?php if ( isset( $notice->data['categories'] ) && is_array( $notice->data['categories'] ) ) : ?>
-										<?php foreach ( $notice->data['categories'] as $value => $title ) : ?>
-											<option value="<?php echo esc_attr( $value ); ?>" selected="selected"><?php echo esc_html( $title ); ?></option>
-										<?php endforeach; ?>
-									<?php endif; ?>
-								</select>
-
-							<?php else : ?>
-
-								<input
-									type="hidden"
-									class="sv-wc-enhanced-search"
-									name="category_ids"
-									style="min-width: 300px;"
-									data-multiple="true"
-									data-action="wc_cart_notices_json_search_product_categories"
-									data-minimum_input_length="2"
-									data-nonce="<?php echo wp_create_nonce( 'search-product-categories' ); ?>"
-									data-placeholder="<?php esc_attr_e( 'Search for a category&hellip;', 'woocommerce-cart-notices' ) ?>"
-									data-selected="<?php $json_ids = array();
-										if ( isset( $notice->data['categories'] ) ) {
-											foreach ( $notice->data['categories'] as $value => $title ) {
-												$json_ids[ esc_attr( $value ) ] = esc_html( $title );
-											}
-										}
-										echo esc_attr( json_encode( $json_ids ) ); ?>"
-									value="<?php echo implode( ',', array_keys( $json_ids ) ); ?>" />
-
-							<?php endif; ?>
+							<select
+								class="sv-wc-enhanced-search"
+								name="category_ids[]"
+								style="min-width: 300px;"
+								multiple="multiple"
+								data-action="wc_cart_notices_json_search_product_categories"
+								data-minimum_input_length="2"
+								data-nonce="<?php echo wp_create_nonce( 'search-product-categories' ); ?>"
+								data-placeholder="<?php esc_attr_e( 'Search for a category&hellip;', 'woocommerce-cart-notices' ) ?>">
+								<?php if ( isset( $notice->data['categories'] ) && is_array( $notice->data['categories'] ) ) : ?>
+									<?php foreach ( $notice->data['categories'] as $value => $title ) : ?>
+										<option value="<?php echo esc_attr( $value ); ?>" selected="selected"><?php echo esc_html( $title ); ?></option>
+									<?php endforeach; ?>
+								<?php endif; ?>
+							</select>
 
 							<?php Framework\SV_WC_Helper::render_select2_ajax(); ?>
 							<span class="description">
@@ -725,46 +657,22 @@ wc_cart_notices()->get_admin_instance()->message_handler->show_messages(); ?>
 							</label>
 						</th>
 						<td>
-							<?php if ( Framework\SV_WC_Plugin_Compatibility::is_wc_version_gte_3_0() ) : ?>
 
-								<select
-										class="sv-wc-enhanced-search"
-										name="hide_category_ids[]"
-										style="min-width: 300px;"
-										multiple="multiple"
-										data-action="wc_cart_notices_json_search_product_categories"
-										data-minimum_input_length="2"
-										data-nonce="<?php echo wp_create_nonce( 'search-product-categories' ); ?>"
-										data-placeholder="<?php esc_attr_e( 'Search for a category&hellip;', 'woocommerce-cart-notices' ) ?>">
-									<?php if ( isset( $notice->data['hide_categories'] ) && is_array( $notice->data['hide_categories'] ) ) : ?>
-										<?php foreach ( $notice->data['hide_categories'] as $value => $title ) : ?>
-											<option value="<?php echo esc_attr( $value ); ?>" selected="selected"><?php echo esc_html( $title ); ?></option>
-										<?php endforeach; ?>
-									<?php endif; ?>
-								</select>
-
-							<?php else : ?>
-
-								<input
-										type="hidden"
-										class="sv-wc-enhanced-search"
-										name="hide_category_ids"
-										style="min-width: 300px;"
-										data-multiple="true"
-										data-action="wc_cart_notices_json_search_product_categories"
-										data-minimum_input_length="2"
-										data-nonce="<?php echo wp_create_nonce( 'search-product-categories' ); ?>"
-										data-placeholder="<?php esc_attr_e( 'Search for a category&hellip;', 'woocommerce-cart-notices' ) ?>"
-										data-selected="<?php $json_ids = array();
-										if ( isset( $notice->data['hide_categories'] ) ) {
-											foreach ( $notice->data['hide_categories'] as $value => $title ) {
-												$json_ids[ esc_attr( $value ) ] = esc_html( $title );
-											}
-										}
-										echo esc_attr( json_encode( $json_ids ) ); ?>"
-										value="<?php echo implode( ',', array_keys( $json_ids ) ); ?>" />
-
-							<?php endif; ?>
+							<select
+									class="sv-wc-enhanced-search"
+									name="hide_category_ids[]"
+									style="min-width: 300px;"
+									multiple="multiple"
+									data-action="wc_cart_notices_json_search_product_categories"
+									data-minimum_input_length="2"
+									data-nonce="<?php echo wp_create_nonce( 'search-product-categories' ); ?>"
+									data-placeholder="<?php esc_attr_e( 'Search for a category&hellip;', 'woocommerce-cart-notices' ) ?>">
+								<?php if ( isset( $notice->data['hide_categories'] ) && is_array( $notice->data['hide_categories'] ) ) : ?>
+									<?php foreach ( $notice->data['hide_categories'] as $value => $title ) : ?>
+										<option value="<?php echo esc_attr( $value ); ?>" selected="selected"><?php echo esc_html( $title ); ?></option>
+									<?php endforeach; ?>
+								<?php endif; ?>
+							</select>
 
 							<?php Framework\SV_WC_Helper::render_select2_ajax(); ?>
 							<span class="description">

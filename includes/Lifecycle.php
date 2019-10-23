@@ -25,7 +25,7 @@ namespace SkyVerge\WooCommerce\Cart_Notices;
 
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_4_0 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_5_0 as Framework;
 
 /**
  * Plugin lifecycle handler.

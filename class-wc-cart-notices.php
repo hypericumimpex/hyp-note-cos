@@ -23,7 +23,7 @@
 
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_4_0 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_5_0 as Framework;
 
 /**
  * WooCommerce Cart Notices main class.
@@ -33,7 +33,7 @@ use SkyVerge\WooCommerce\PluginFramework\v5_4_0 as Framework;
 class WC_Cart_Notices extends Framework\SV_WC_Plugin {
 
 
-	const VERSION = '1.9.1';
+	const VERSION = '1.11.0';
 
 	/** @var WC_Cart_Notices single instance of this plugin */
 	protected static $instance;
@@ -820,17 +820,8 @@ class WC_Cart_Notices extends Framework\SV_WC_Plugin {
 		// minimum order amount set for free shipping method?
 		foreach ( $shipping_methods as $method ) {
 
-			if ( Framework\SV_WC_Plugin_Compatibility::is_wc_version_gte( '2.6' ) ) {
-
-				if ( 'legacy_free_shipping' === $method->id && 'yes' === $method->enabled && isset( $method->min_amount ) && $method->min_amount ) {
-					return $method->min_amount;
-				}
-
-			} else {
-
-				if ( 'free_shipping' === $method->id && 'yes' === $method->enabled && isset( $method->min_amount ) && $method->min_amount ) {
-					return $method->min_amount;
-				}
+			if ( 'legacy_free_shipping' === $method->id && 'yes' === $method->enabled && isset( $method->min_amount ) && $method->min_amount ) {
+				return $method->min_amount;
 			}
 		}
 

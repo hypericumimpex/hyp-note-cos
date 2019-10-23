@@ -23,7 +23,7 @@
 
 defined( 'ABSPATH' ) or exit;
 
-use SkyVerge\WooCommerce\PluginFramework\v5_4_0 as Framework;
+use SkyVerge\WooCommerce\PluginFramework\v5_5_0 as Framework;
 
 /**
  * Cart Notices Admin Class.
@@ -108,10 +108,10 @@ class WC_Cart_Notices_Admin {
 
 		// notice name already in use?
 		if ( 'cart_notice_new' === $_POST['action'] ) {
-			$name_exists_query = $wpdb->prepare( "SELECT name FROM {$wpdb->prefix}cart_notices WHERE name = %s", $this->get_request( 'notice_name' ) );
+			$name_exists_query = $wpdb->prepare( "SELECT name FROM {$wpdb->prefix}cart_notices WHERE name = %s", $this->get_requested_value( 'notice_name' ) );
 		} elseif ( 'cart_notice_edit' === $_POST['action'] ) {
 			$name_exists_query = $wpdb->prepare( "SELECT name FROM {$wpdb->prefix}cart_notices WHERE name = %s and id != %d",
-			                                     $this->get_request( 'notice_name' ), $this->get_request( 'id' ) );
+			                                     $this->get_requested_value( 'notice_name' ), $this->get_requested_value( 'id' ) );
 		}
 		if ( $wpdb->get_var( $name_exists_query ) ) {
 			$this->message_handler->add_error( __( 'That name is already in use', 'woocommerce-cart-notices' ) );
@@ -185,29 +185,29 @@ class WC_Cart_Notices_Admin {
 			$query_params = array(
 				'page'                   => wc_cart_notices()->id,
 				'tab'                    => 'create' === $action ? 'new' : 'edit',
-				'notice_name'            => urlencode( $this->get_request( 'notice_name' ) ),
-				'notice_enabled'         => urlencode( $this->get_request( 'notice_enabled' ) ),
-				'notice_message'         => urlencode( $this->get_request( 'notice_message' ) ),
-				'call_to_action'         => urlencode( $this->get_request( 'call_to_action' ) ),
-				'call_to_action_url'     => urlencode( $this->get_request( 'call_to_action_url' ) ),
-				'minimum_order_amount'   => urlencode( $this->get_request( 'minimum_order_amount' ) ),
-				'threshold_order_amount' => urlencode( $this->get_request( 'threshold_order_amount' ) ),
-				'deadline_days'          => urlencode( serialize( $this->get_request( 'deadline_days' ) ) ),
-				'deadline_hour'          => urlencode( $this->get_request( 'deadline_hour' ) ),
-				'referer'                => urlencode( $this->get_request( 'referer' ) ),
-				'product_ids'            => urlencode( serialize( $this->get_request( 'product_ids' ) ) ),
-				'hide_product_ids'       => urlencode( serialize( $this->get_request( 'hide_product_ids' ) ) ),
-				'shipping_countries'     => urlencode( serialize( $this->get_request( 'shipping_countries' ) ) ),
-				'minimum_quantity'       => urlencode( $this->get_request( 'minimum_quantity' ) ),
-				'maximum_quantity'       => urlencode( $this->get_request( 'maximum_quantity' ) ),
-				'category_ids'           => urlencode( serialize( $this->get_request( 'category_ids' ) ) ),
-				'hide_category_ids'      => urlencode( serialize( $this->get_request( 'hide_category_ids' ) ) ),
+				'notice_name'            => urlencode( $this->get_requested_value( 'notice_name' ) ),
+				'notice_enabled'         => urlencode( $this->get_requested_value( 'notice_enabled' ) ),
+				'notice_message'         => urlencode( $this->get_requested_value( 'notice_message' ) ),
+				'call_to_action'         => urlencode( $this->get_requested_value( 'call_to_action' ) ),
+				'call_to_action_url'     => urlencode( $this->get_requested_value( 'call_to_action_url' ) ),
+				'minimum_order_amount'   => urlencode( $this->get_requested_value( 'minimum_order_amount' ) ),
+				'threshold_order_amount' => urlencode( $this->get_requested_value( 'threshold_order_amount' ) ),
+				'deadline_days'          => urlencode( serialize( $this->get_requested_value( 'deadline_days' ) ) ),
+				'deadline_hour'          => urlencode( $this->get_requested_value( 'deadline_hour' ) ),
+				'referer'                => urlencode( $this->get_requested_value( 'referer' ) ),
+				'product_ids'            => urlencode( serialize( $this->get_requested_value( 'product_ids' ) ) ),
+				'hide_product_ids'       => urlencode( serialize( $this->get_requested_value( 'hide_product_ids' ) ) ),
+				'shipping_countries'     => urlencode( serialize( $this->get_requested_value( 'shipping_countries' ) ) ),
+				'minimum_quantity'       => urlencode( $this->get_requested_value( 'minimum_quantity' ) ),
+				'maximum_quantity'       => urlencode( $this->get_requested_value( 'maximum_quantity' ) ),
+				'category_ids'           => urlencode( serialize( $this->get_requested_value( 'category_ids' ) ) ),
+				'hide_category_ids'      => urlencode( serialize( $this->get_requested_value( 'hide_category_ids' ) ) ),
 			);
 
 			if ( 'create' === $action ) {
-				$query_params['notice_type'] = urlencode( $this->get_request( 'notice_type' ) );
+				$query_params['notice_type'] = urlencode( $this->get_requested_value( 'notice_type' ) );
 			} elseif ( 'update' === $action ) {
-				$query_params['id'] = $this->get_request( 'id' );
+				$query_params['id'] = $this->get_requested_value( 'id' );
 			}
 
 			/**
@@ -225,27 +225,27 @@ class WC_Cart_Notices_Admin {
 
 		// data common to an insert or update
 		$fields = array(
-			'name'       => trim( $this->get_request( 'notice_name' ) ),
-			'enabled'    => $this->get_request( 'notice_enabled' ) ? 1 : 0,
-			'message'    => trim( $this->get_request( 'notice_message' ) ),
-			'action'     => trim( $this->get_request( 'call_to_action' ) ),
-			'action_url' => trim( $this->get_request( 'call_to_action_url' ) ),
+			'name'       => trim( $this->get_requested_value( 'notice_name' ) ),
+			'enabled'    => $this->get_requested_value( 'notice_enabled' ) ? 1 : 0,
+			'message'    => trim( $this->get_requested_value( 'notice_message' ) ),
+			'action'     => trim( $this->get_requested_value( 'call_to_action' ) ),
+			'action_url' => trim( $this->get_requested_value( 'call_to_action_url' ) ),
 			'date_added' => date("Y-m-d H:i:s")
 		);
 
 		// get the notice type, depending on whether we're creating or updating
 		if ( 'create' === $action ) {
-			$notice_type = $this->get_request( 'notice_type' );
+			$notice_type    = $this->get_requested_value( 'notice_type' );
 			$fields['type'] = $notice_type;
 		} elseif ( 'update' === $action ) {
 			// load the immutable notice type from the database
-			$notice_type = $wpdb->get_var( $wpdb->prepare( "SELECT type FROM {$wpdb->prefix}cart_notices WHERE id = %d", $this->get_request( 'id' ) ) );
+			$notice_type = $wpdb->get_var( $wpdb->prepare( "SELECT type FROM {$wpdb->prefix}cart_notices WHERE id = %d", $this->get_requested_value( 'id' ) ) );
 		}
 
 		// set any missing defaults (ie, unchecked check boxes)
 		if ( 'deadline' === $notice_type ) {
 
-			$deadline_days = $this->get_request( 'deadline_days' );
+			$deadline_days = $this->get_requested_value( 'deadline_days' );
 
 			for ( $i = 0; $i < 6; $i++ ) {
 
@@ -260,46 +260,38 @@ class WC_Cart_Notices_Admin {
 
 			case 'minimum_amount':
 
-				$fields['data']['minimum_order_amount']   = trim( $this->get_request( 'minimum_order_amount' ) );
-				$fields['data']['threshold_order_amount'] = trim( $this->get_request( 'threshold_order_amount' ) );
+				$fields['data']['minimum_order_amount']   = trim( $this->get_requested_value( 'minimum_order_amount' ) );
+				$fields['data']['threshold_order_amount'] = trim( $this->get_requested_value( 'threshold_order_amount' ) );
 
 			break;
 
 			case 'deadline':
 
 				$fields['data'] = array(
-					'deadline_hour' => trim( $this->get_request( 'deadline_hour' ) ),
+					'deadline_hour' => trim( $this->get_requested_value( 'deadline_hour' ) ),
 					'deadline_days' => $deadline_days,
 				);
 
 			break;
 
 			case 'referer':
-				$fields['data']['referer'] = trim( $this->get_request( 'referer' ) );
+				$fields['data']['referer'] = trim( $this->get_requested_value( 'referer' ) );
 			break;
 
 			case 'products':
 
-				// TODO Select2 version >=4.0 bundled with WC 3.0+ returns an array vs a string, we can change this when WC 3.0 is the minimum requirement {FN 2017-02-23}
-				$product_ids      = $this->get_request( 'product_ids' );
-				$hide_product_ids = $this->get_request( 'hide_product_ids' );
-
-				$fields['data']['product_ids']        = is_string( $product_ids )      ? explode( ',', $product_ids )      : $product_ids;
-				$fields['data']['hide_product_ids']   = is_string( $hide_product_ids ) ? explode( ',', $hide_product_ids ) : $hide_product_ids;
-				$fields['data']['shipping_countries'] = $this->get_request( 'shipping_countries' );
-				$fields['data']['minimum_quantity']   = $this->get_request( 'minimum_quantity' );
-				$fields['data']['maximum_quantity']   = $this->get_request( 'maximum_quantity' );
+				$fields['data']['product_ids']        = $this->get_requested_value( 'product_ids' );
+				$fields['data']['hide_product_ids']   = $this->get_requested_value( 'hide_product_ids' );
+				$fields['data']['shipping_countries'] = $this->get_requested_value( 'shipping_countries' );
+				$fields['data']['minimum_quantity']   = $this->get_requested_value( 'minimum_quantity' );
+				$fields['data']['maximum_quantity']   = $this->get_requested_value( 'maximum_quantity' );
 
 			break;
 
 			case 'categories':
 
-				// TODO Select2 version >=4.0 bundled with WC 3.0+ returns an array vs a string, we can change this when WC 3.0 is the minimum requirement {FN 2017-02-23}
-				$category_ids      = $this->get_request( 'category_ids' );
-				$hide_category_ids = $this->get_request( 'hide_category_ids' );
-
-				$fields['data']['category_ids']      = is_string( $category_ids )      ? explode( ',', $category_ids )      : $category_ids;
-				$fields['data']['hide_category_ids'] = is_string( $hide_category_ids ) ? explode( ',', $hide_category_ids ) : $hide_category_ids;
+				$fields['data']['category_ids']      = $this->get_requested_value( 'category_ids' );
+				$fields['data']['hide_category_ids'] = $this->get_requested_value( 'hide_category_ids' );
 
 			break;
 
@@ -325,7 +317,7 @@ class WC_Cart_Notices_Admin {
 
 		} elseif ( 'update' === $action ) {
 
-			$id = $this->get_request( 'id' );
+			$id = $this->get_requested_value( 'id' );
 
 			$wpdb->update( "{$wpdb->prefix}cart_notices", $fields, array( 'id' => $id ) );
 
@@ -516,25 +508,25 @@ class WC_Cart_Notices_Admin {
 	private function load_notice_from_request() {
 
 		$notice = (object) array(
-			'name'       => $this->get_request( 'notice_name' ),
-			'enabled'    => $this->get_request( 'notice_enabled' ),
-			'type'       => $this->get_request( 'notice_type' ),
-			'message'    => $this->get_request( 'notice_message' ),
-			'action'     => $this->get_request( 'call_to_action' ),
-			'action_url' => $this->get_request( 'call_to_action_url' ),
+			'name'       => $this->get_requested_value( 'notice_name' ),
+			'enabled'    => $this->get_requested_value( 'notice_enabled' ),
+			'type'       => $this->get_requested_value( 'notice_type' ),
+			'message'    => $this->get_requested_value( 'notice_message' ),
+			'action'     => $this->get_requested_value( 'call_to_action' ),
+			'action_url' => $this->get_requested_value( 'call_to_action_url' ),
 			'data'       => array(
-				'minimum_order_amount' => $this->get_request( 'minimum_order_amount' ),
-				'threshold_order_amount' => $this->get_request( 'threshold_order_amount' ),
-				'deadline_hour'        => $this->get_request( 'deadline_hour' ),
-				'deadline_days'        => unserialize( $this->get_request( 'deadline_days' ) ),
-				'referer'              => $this->get_request( 'referer' ),
-				'product_ids'          => unserialize( $this->get_request( 'product_ids' ) ),
-				'hide_product_ids'     => unserialize( $this->get_request( 'hide_product_ids' ) ),
-				'shipping_countries'   => unserialize( $this->get_request( 'shipping_countries' ) ),
-				'minimum_quantity'     => $this->get_request( 'minimum_quantity' ),
-				'maximum_quantity'     => $this->get_request( 'maximum_quantity' ),
-				'category_ids'         => unserialize( $this->get_request( 'category_ids' ) ),
-				'hide_category_ids'    => unserialize( $this->get_request( 'hide_category_ids' ) ),
+				'minimum_order_amount' => $this->get_requested_value( 'minimum_order_amount' ),
+				'threshold_order_amount' => $this->get_requested_value( 'threshold_order_amount' ),
+				'deadline_hour'        => $this->get_requested_value( 'deadline_hour' ),
+				'deadline_days'        => unserialize( $this->get_requested_value( 'deadline_days' ) ),
+				'referer'              => $this->get_requested_value( 'referer' ),
+				'product_ids'          => unserialize( $this->get_requested_value( 'product_ids' ) ),
+				'hide_product_ids'     => unserialize( $this->get_requested_value( 'hide_product_ids' ) ),
+				'shipping_countries'   => unserialize( $this->get_requested_value( 'shipping_countries' ) ),
+				'minimum_quantity'     => $this->get_requested_value( 'minimum_quantity' ),
+				'maximum_quantity'     => $this->get_requested_value( 'maximum_quantity' ),
+				'category_ids'         => unserialize( $this->get_requested_value( 'category_ids' ) ),
+				'hide_category_ids'    => unserialize( $this->get_requested_value( 'hide_category_ids' ) ),
 			),
 		);
 
@@ -557,7 +549,7 @@ class WC_Cart_Notices_Admin {
 	 * @param string $name
 	 * @return string|null value if it exists, null otherwise
 	 */
-	private function get_request( $name ) {
+	private function get_requested_value( $name ) {
 
 		if ( isset( $_REQUEST[ $name ] ) ) {
 
